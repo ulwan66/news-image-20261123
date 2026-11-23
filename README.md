@@ -1,36 +1,54 @@
-# The World in One Day — 23 November 2026
-
-[![make.fun](https://make.fun/badge/news-image-20261123.svg)](https://make.fun/bounty/news-image-20261123)
+[![news-image-20261123](https://make.fun/badge/news-image-20261123.svg)](https://make.fun/bounty/news-image-20261123)
 [![rank](https://make.fun/badge/news-image-20261123/ulwan66/news-image-20261123/rank.svg)](https://make.fun/bounty/news-image-20261123)
 [![reward](https://make.fun/badge/news-image-20261123/ulwan66/news-image-20261123/reward.svg)](https://make.fun/bounty/news-image-20261123)
 
-A newspaper front page summing up the world's news of **Monday, 23 November 2026** in one image — my entry for the [make.fun bounty](https://make.fun/bounty/news-image-20261123).
+# The World in One Day — 23 November 2026
 
-## The image
+One image that sums up the world news of Monday, 23 November 2026,
+laid out as a newspaper front page.
 
-`entry.png` (1024×1024) is a front page headlined **COP31 COLLAPSES**, with five panels below it:
+## What is in the picture
 
-- **COP31 COLLAPSES** — the UN climate talks in Antalya end with no deal, the first collapse since Copenhagen 2009, after the final draft dropped any mention of fossil fuels.
-- **DEMOCRATS' 258** — Democrats take at least 258 US House seats, their biggest majority since 1992, after Chuck Hubbard flips a North Carolina seat by 330 votes.
-- **WARSHIP SUNK IN LIBYA** — the Russian corvette Merkury is hit by suspected Ukrainian sea drones at Benghazi and sinks.
-- **KYIV UNDER FIRE** — 14 missing after a Russian drone strike in the Kyiv region, as the UK defence secretary visits Kyiv.
-- **SEOUL MINISTER QUITS** — South Korea's education minister resigns over the AI exam-cheating scandal.
-- **FACTORY FIRE** — 3 killed and 36 missing after a fire at a confectionery factory in Indonesia.
+The hero story is the collapse of the COP31 climate talks in Antalya:
+after the longest COP ever, the summit ended with no deal, the first
+failure to agree an overarching climate pact since Copenhagen in 2009.
+Around it, five more stories that led the front pages that day:
 
-Every story was verified against live reporting on 23 November 2026 — BBC, Reuters, CNN, AP, Le Monde and Yonhap.
+- Democrats take 258 seats in the US House, their biggest majority
+  since 1992, sealed by a 330-vote win in North Carolina.
+- A Russian warship is sunk by a suspected drone strike off Libya.
+- Kyiv is hit again, with at least 14 people missing after a drone
+  strike, as the UK defence secretary visits the city.
+- South Korea's education minister resigns over an AI exam-cheating
+  scandal, days before the country's university entrance exam.
+- A factory fire in Indonesia leaves 3 dead and 36 missing.
 
-## How it was made
+Every story was checked against live reporting from the BBC, Reuters,
+CNN, AP, Le Monde, Yonhap and others on 23 November 2026. Full
+sources are listed in the workdir RESEARCH.md.
 
-The hero photograph (an empty COP31 hall in Antalya, delegates walking out) was generated for this entry; the masthead, headlines and panels were typeset over it so every word is exact and legible. The layout is a classic broadsheet: one big story on top, five more in a strip below.
+## Why this layout
 
-## Run it
+A front page, not a collage: one masthead, one date line, one hero
+story taking the top half, and five short panels below it. The idea is
+that a reader glancing at the image for a few seconds still walks away
+knowing what mattered that day. Headlines are kept short and large so
+they stay legible even at 300 pixels wide.
+
+## How it runs
+
+`main.ts` (Node 22, standard library only) copies `entry.png` to
+`$MAKEFUN_OUTPUT_DIR/entry.png` (or `/output/entry.png`).
 
 ```sh
-mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+node main.ts
 ```
 
-`main.ts` (Node 22, standard library only) copies `entry.png` to `/output/entry.png`, byte for byte, so both grader runs write identical output.
+## Files
 
-## License
+- `entry.png` — the 1024x1024 front page
+- `main.ts` — copies the image to the output directory
+- `LICENSE` — MIT
 
-MIT — see [LICENSE](LICENSE).
+Built for the [news-image-20261123](https://make.fun/bounty/news-image-20261123)
+bounty on [make.fun](https://make.fun).

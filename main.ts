@@ -1,25 +1,60 @@
-// news-image-20261123 entry (Node 22, standard library only).
+// Entry point for the news-image-20261123 make.fun bounty.
 //
-// The entry is the file entry.png next to this script: a newspaper front
-// page summing up Monday 23 November 2026. This program copies it to the
-// output directory the grader provides (/output, or MAKEFUN_OUTPUT_DIR
-// when run locally) so the judge sees exactly the bytes of that file.
+// The front page image lives in this repository as entry.png.
+// This program places a copy of it at <output>/entry.png, where
+// <output> comes from MAKEFUN_OUTPUT_DIR when set, else /output.
 //
-// Run locally: mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+// Node 22, standard library only. No dependencies, no network.
 
-import { copyFileSync, mkdirSync, statSync } from 'node:fs';
-import { dirname, join } from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { copyFileSync, existsSync, mkdirSync, readFileSync, statSync } from "node:fs";
+import { createHash } from "node:crypto";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
-const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
-mkdirSync(outDir, { recursive: true });
+const SOURCE_NAME = "entry.png";
+const OUTPUT_NAME = "entry.png";
+const SIZE_LIMIT = 1_048_576;
 
-const here = dirname(fileURLToPath(import.meta.url));
-const src = join(here, 'entry.png');
-const dst = join(outDir, 'entry.png');
-copyFileSync(src, dst);
-
-// Fail loudly instead of shipping a partial copy.
-if (statSync(dst).size !== statSync(src).size) {
-  throw new Error('entry.png copy is incomplete');
+function scriptDir() {
+  return dirname(fileURLToPath(import.meta.url));
 }
+
+function outputDir() {
+  const fromEnv = process.env.MAKEFUN_OUTPUT_DIR;
+  if (fromEnv && fromEnv.trim().length > 0) {
+    return resolve(fromEnv);
+  }
+  return "/output";
+}
+
+function sha256Hex(path) {
+  const digest = createHash("sha256");
+  digest.update(readFileSync(path));
+  return digest.digest("hex");
+}
+
+function main() {
+  const here = scriptDir();
+  const source = join(here, SOURCE_NAME);
+  const destDir = outputDir();
+  const dest = join(destDir, OUTPUT_NAME);
+
+  if (!existsSync(source)) {
+    console.error(`missing source image: ${source}`);
+    process.exit(1);
+  }
+
+  const size = statSync(source).size;
+  if (size > SIZE_LIMIT) {
+    console.error(`source image too large: ${size} bytes (limit ${SIZE_LIMIT})`);
+    process.exit(1);
+  }
+
+  mkdirSync(destDir, { recursive: true });
+  copyFileSync(source, dest);
+
+  const copied = sha256Hex(dest);
+  console.log(`wrote ${dest} (${size} bytes, sha256 ${copied})`);
+}
+
+main();
