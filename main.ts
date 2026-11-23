@@ -1,7 +1,9 @@
 // news-image-20261123 entry (Node 22, standard library only).
-// The image is entry.png beside this file; the program copies it to the
+//
+// The entry is the file entry.png next to this script: a newspaper front
+// page summing up Monday 23 November 2026. This program copies it to the
 // output directory the grader provides (/output, or MAKEFUN_OUTPUT_DIR
-// when run locally), so the judge sees exactly the bytes of that file.
+// when run locally) so the judge sees exactly the bytes of that file.
 //
 // Run locally: mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
 

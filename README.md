@@ -8,7 +8,7 @@ A newspaper front page summing up the world's news of **Monday, 23 November 2026
 
 ## The image
 
-`entry.png` (1024×1024, 530,059 bytes) is a front page headlined **COP31 COLLAPSES**, with five panels below it:
+`entry.png` (1024×1024) is a front page headlined **COP31 COLLAPSES**, with five panels below it:
 
 - **COP31 COLLAPSES** — the UN climate talks in Antalya end with no deal, the first collapse since Copenhagen 2009, after the final draft dropped any mention of fossil fuels.
 - **DEMOCRATS' 258** — Democrats take at least 258 US House seats, their biggest majority since 1992, after Chuck Hubbard flips a North Carolina seat by 330 votes.
@@ -18,6 +18,10 @@ A newspaper front page summing up the world's news of **Monday, 23 November 2026
 - **FACTORY FIRE** — 3 killed and 36 missing after a fire at a confectionery factory in Indonesia.
 
 Every story was verified against live reporting on 23 November 2026 — BBC, Reuters, CNN, AP, Le Monde and Yonhap.
+
+## How it was made
+
+The hero photograph (an empty COP31 hall in Antalya, delegates walking out) was generated for this entry; the masthead, headlines and panels were typeset over it so every word is exact and legible. The layout is a classic broadsheet: one big story on top, five more in a strip below.
 
 ## Run it
 
